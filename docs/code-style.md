@@ -64,7 +64,7 @@ Formatting is based on **Google C++ Style** with the following overrides (define
 
 ### License Header
 
-Every file **must** start with the Apache 2.0 license header. Use the current copyright year:
+Every file **must** start with the Apache 2.0 license header.
 
 ```cpp
 /*

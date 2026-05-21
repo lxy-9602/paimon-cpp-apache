@@ -25,7 +25,7 @@ Thank you for your interest in contributing to paimon-cpp! This document explain
 
 ## Reporting Issues
 
-If you find a bug or want to request a feature, please open an [issue](https://github.com/alibaba/paimon-cpp/issues/new). Include as much detail as possible — steps to reproduce, expected vs. actual behavior, environment info, etc.
+If you find a bug or want to request a feature, please open an [issue](https://github.com/apache/paimon-cpp/issues/new). Include as much detail as possible — steps to reproduce, expected vs. actual behavior, environment info, etc.
 
 ---
 

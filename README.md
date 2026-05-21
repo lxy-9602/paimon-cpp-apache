@@ -52,7 +52,7 @@ The current implementation supports the `x86_64` architecture.
 If you do not have `git-lfs` installed, install it first.
 
 ```bash
-git clone https://github.com/alibaba/paimon-cpp.git
+git clone https://github.com/apache/paimon-cpp.git
 cd paimon-cpp
 git lfs pull
 ```

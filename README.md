@@ -28,7 +28,7 @@ Background and documentation are available at [paimon.apache.org](https://paimon
 
 ## Status
 
-Paimon-cpp is currently undergoing repository migration. The original repository is hosted at [github.com/alibaba/paimon-cpp](https://github.com/alibaba/paimon-cpp/), and the codebase is being migrated incrementally to the Apache Paimon community repository. 
+Paimon-cpp is currently undergoing repository migration. The original repository is hosted at [github.com/alibaba/paimon-cpp](https://github.com/alibaba/paimon-cpp/), and the codebase is being migrated incrementally to the Apache Paimon community repository.
 
 ## Features
 

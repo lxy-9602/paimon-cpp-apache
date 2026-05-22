@@ -49,6 +49,8 @@ The current implementation supports the `x86_64` architecture.
 
 ## Building
 
+> **Note:** The build system and source files are being migrated incrementally. The instructions below will work once the CMake build files and source code are available in this repository.
+
 If you do not have `git-lfs` installed, install it first.
 
 ```bash

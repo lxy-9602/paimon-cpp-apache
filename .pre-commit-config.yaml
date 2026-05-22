@@ -1,0 +1,88 @@
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+
+# Adapted from Apache Iceberg C++
+# https://github.com/apache/iceberg-cpp/blob/main/.pre-commit-config.yaml
+
+# To use this, install the python package `pre-commit` and
+# run once `pre-commit install`. This will setup a git pre-commit-hook
+# that is executed on each commit and will report the linting problems.
+# To run all hooks on all files use `pre-commit run -a`
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+        exclude: (^test/test_data/.*|^third_party/.*)
+      - id: end-of-file-fixer
+        exclude: (^test/test_data/.*|^third_party/.*)
+      - id: check-yaml
+      - id: check-added-large-files
+        args: ["--maxkb=5120", "--enforce-all"]
+
+  - repo: https://github.com/pre-commit/mirrors-clang-format
+    rev: v20.1.8
+    hooks:
+      - id: clang-format
+        exclude_types: [json]
+        files: \.(c|cpp|h|hpp|cc|cxx)$
+        exclude: (^test/test_data/.*|^third_party/.*)
+
+  - repo: https://github.com/cheshirekow/cmake-format-precommit
+    rev: v0.6.13
+    hooks:
+      - id: cmake-format
+        exclude: (^test/test_data/.*|^third_party/.*)
+
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.4.1
+    hooks:
+      - id: codespell
+        exclude: (^test/test_data/.*|^third_party/.*|fix_includes.py)
+        args: ["--ignore-words", ".codespell_ignore"]
+  - repo: https://github.com/sphinx-contrib/sphinx-lint
+    rev: v0.9.1
+    hooks:
+      - id: sphinx-lint
+        alias: docs
+        files: ^docs/source
+        exclude: ^docs/source/python/generated
+        args: [
+          '--enable',
+          'all',
+          '--disable',
+          'dangling-hyphen,line-too-long',
+        ]
+
+  - repo: https://github.com/cpplint/cpplint
+    rev: 2.0.2
+    hooks:
+      - id: cpplint
+        alias: cpp
+        name: C++ Lint
+        args:
+          - "--quiet"
+          - "--verbose=2"
+          - "--filter=-whitespace/line_length,-whitespace/parens,-whitespace/indent_namespace,-build/include_what_you_use,-build/c++11,-build/c++17,-readability/nolint,-runtime/references"
+
+        types_or:
+          - c++
+        exclude: |
+          (?x)^(
+            (third_party)/.*
+          )$

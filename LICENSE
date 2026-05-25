@@ -259,7 +259,6 @@ This product includes code from Apache Arrow.
   * cmake_modules/DefineOptions.cmake
   * cmake_modules/san-config.cmake
   * cmake_modules/SetupCxxFlags.cmake
-  * third_party/download_dependencies.sh
 
 Copyright: 2016-2024 The Apache Software Foundation.
 Home page: https://arrow.apache.org/

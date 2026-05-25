@@ -243,3 +243,25 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 --------------------------------------------------------------------------------
+
+This product includes code from Apache Arrow.
+
+* Core utilities:
+  * docs utilities in docs/ directory
+  * basic utilities in
+    - include/paimon/compare.h
+    - include/paimon/macros.h
+    - include/paimon/status.h
+    - include/paimon/string_builder.h
+    - src/paimon/common/utils/status.cpp
+* Build system modules:
+  * cmake_modules/BuildUtils.cmake
+  * cmake_modules/DefineOptions.cmake
+  * cmake_modules/san-config.cmake
+  * cmake_modules/SetupCxxFlags.cmake
+  * third_party/download_dependencies.sh
+
+Copyright: 2016-2024 The Apache Software Foundation.
+Home page: https://arrow.apache.org/
+License: https://www.apache.org/licenses/LICENSE-2.0
+--------------------------------------------------------------------------------

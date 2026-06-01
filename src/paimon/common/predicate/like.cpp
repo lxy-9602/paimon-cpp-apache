@@ -21,6 +21,7 @@
 #include <string>
 #include <vector>
 
+#include "fmt/format.h"
 namespace paimon {
 
 namespace {
@@ -63,19 +64,19 @@ Result<bool> Like::TestString(const std::string& field, const std::string& patte
     for (size_t i = 0; i < pattern.size();) {
         if (pattern[i] == '\\') {
             if (i + 1 >= pattern.size()) {
-                return Status::Invalid("Invalid escape sequence '" + pattern + "', " +
-                                       std::to_string(i));
+                return Status::Invalid(fmt::format("Invalid escape sequence '{}', index={}",
+                                                   pattern, std::to_string(i)));
             }
             char next_char = pattern[i + 1];
             if (next_char != '_' && next_char != '%' && next_char != '\\') {
-                return Status::Invalid("Invalid escape sequence '" + pattern + "', " +
-                                       std::to_string(i));
+                return Status::Invalid(fmt::format("Invalid escape sequence '{}', index={}",
+                                                   pattern, std::to_string(i)));
             }
-            pat_chars.push_back(std::string(1, next_char));
+            pat_chars.emplace_back(1, next_char);
             is_wild.push_back(false);
             i += 2;
         } else if (pattern[i] == '_' || pattern[i] == '%') {
-            pat_chars.push_back(std::string(1, pattern[i]));
+            pat_chars.emplace_back(1, pattern[i]);
             is_wild.push_back(true);
             ++i;
         } else {

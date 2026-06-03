@@ -1,0 +1,62 @@
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#pragma once
+
+#include <optional>
+
+#include "paimon/common/memory/memory_slice_input.h"
+#include "paimon/common/sst/block_handle.h"
+#include "paimon/common/sst/bloom_filter_handle.h"
+#include "paimon/reader/batch_reader.h"
+#include "paimon/result.h"
+
+namespace paimon {
+
+/// Footer of a sort lookup store.
+class PAIMON_EXPORT SortLookupStoreFooter {
+ public:
+    static Result<std::unique_ptr<SortLookupStoreFooter>> ReadSortLookupStoreFooter(
+        MemorySliceInput* input);
+
+ public:
+    SortLookupStoreFooter(const BlockHandle& index_block_handle,
+                          const std::optional<BloomFilterHandle>& bloom_filter_handle)
+        : index_block_handle_(index_block_handle), bloom_filter_handle_(bloom_filter_handle) {}
+
+    ~SortLookupStoreFooter() = default;
+
+    const BlockHandle& GetIndexBlockHandle() const {
+        return index_block_handle_;
+    }
+    const std::optional<BloomFilterHandle>& GetBloomFilterHandle() const {
+        return bloom_filter_handle_;
+    }
+
+    MemorySlice WriteSortLookupStoreFooter(MemoryPool* pool);
+
+ public:
+    // 20 bytes for bloom filter handle, 12 bytes for index block handle, 4 bytes for magic number
+    static constexpr int32_t ENCODED_LENGTH = 36;
+    static constexpr int32_t MAGIC_NUMBER = 1481571681;
+
+ private:
+    BlockHandle index_block_handle_;
+    std::optional<BloomFilterHandle> bloom_filter_handle_;
+};
+}  // namespace paimon

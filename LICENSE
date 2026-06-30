@@ -502,6 +502,16 @@ POSSIBILITY OF SUCH DAMAGE.
 
 --------------------------------------------------------------------------------
 
+This product includes code from LucenePlusPlus.
+
+* LucenePlusPlus utility in src/paimon/global_index/lucene/ directory
+
+Copyright: 2009-2014 Alan Wright.
+Home page: https://github.com/luceneplusplus/LucenePlusPlus
+License: https://www.apache.org/licenses/LICENSE-2.0
+
+--------------------------------------------------------------------------------
+
 This product includes code from cppjieba.
 
 * cppjieba utility in src/paimon/global_index/lucene/ directory
